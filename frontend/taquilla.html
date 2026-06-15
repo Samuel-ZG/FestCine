@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Comprar entrada — FestCine</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-brand">🎬 Fest<span>Cine</span></div>
+    <div class="nav-links">
+      <a class="nav-link" href="index.html">Inicio</a>
+      <a class="nav-link active" href="taquilla.html">Comprar entrada</a>
+      <a class="nav-link" href="portal.html">Mi portal</a>
+      <a class="nav-link" href="agenda.html">Agenda</a>
+      <a class="nav-link" href="reportes.html">Reportes</a>
+    </div>
+  </nav>
+
+  <main class="page">
+    <div class="wizard-header">
+      <h1 class="page-title">🎟️ Comprar entrada</h1>
+      <p class="page-subtitle">Flujo público — no requiere cuenta. Sigue los pasos para elegir tu asiento.</p>
+
+      <!-- Step indicator -->
+      <div class="wizard-steps" id="step-indicator">
+        <div class="wizard-step-item active" data-step="1">
+          <div class="step-num">1</div>
+          <div class="step-label">Película</div>
+        </div>
+        <div class="wizard-step-item" data-step="2">
+          <div class="step-num">2</div>
+          <div class="step-label">Función</div>
+        </div>
+        <div class="wizard-step-item" data-step="3">
+          <div class="step-num">3</div>
+          <div class="step-label">Tarifa</div>
+        </div>
+        <div class="wizard-step-item" data-step="4">
+          <div class="step-num">4</div>
+          <div class="step-label">Asientos</div>
+        </div>
+        <div class="wizard-step-item" data-step="5">
+          <div class="step-num">5</div>
+          <div class="step-label">Datos</div>
+        </div>
+        <div class="wizard-step-item" data-step="6">
+          <div class="step-num">6</div>
+          <div class="step-label">Confirmación</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PASO 1: Película ── -->
+    <div class="wizard-panel active" id="panel-1">
+      <div class="card">
+        <div class="card-title">Elige una película</div>
+        <div id="cartelera-grid" class="cartelera-grid">
+          <div class="alert alert-info"><span class="alert-icon"><span class="spinner"></span></span> Cargando cartelera...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PASO 2: Función ── -->
+    <div class="wizard-panel" id="panel-2">
+      <div class="card">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem">
+          <div class="card-title" style="margin-bottom:0">Elige una función</div>
+          <button class="btn btn-ghost btn-sm" onclick="Taquilla.goBack(1)">← Volver</button>
+        </div>
+        <div id="pelicula-seleccionada" style="font-size:.88rem;color:var(--text-muted);margin-bottom:1rem"></div>
+        <div id="proyecciones-list" class="proyeccion-list">
+          <div class="alert alert-info"><span class="alert-icon"><span class="spinner"></span></span> Cargando funciones...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PASO 3: Tarifa y cantidad ── -->
+    <div class="wizard-panel" id="panel-3">
+      <div class="card">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem">
+          <div class="card-title" style="margin-bottom:0">Elige tarifa y cantidad de entradas</div>
+          <button class="btn btn-ghost btn-sm" onclick="Taquilla.goBack(2)">← Volver</button>
+        </div>
+
+        <div id="tarifas-grid" class="cartelera-grid">
+          <div class="alert alert-info"><span class="alert-icon"><span class="spinner"></span></span> Cargando tarifas...</div>
+        </div>
+
+        <div class="form-group" style="max-width:220px;margin-top:1.25rem">
+          <label for="inp-cantidad">Cantidad de entradas</label>
+          <input type="number" id="inp-cantidad" min="1" value="1" />
+        </div>
+
+        <div id="feedback-3" style="margin-top:1rem"></div>
+
+        <button id="btn-continuar-3" class="btn btn-primary" style="margin-top:1.25rem" disabled onclick="Taquilla.step3Continue()">
+          Continuar →
+        </button>
+      </div>
+    </div>
+
+    <!-- ── PASO 4: Asientos ── -->
+    <div class="wizard-panel" id="panel-4">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem">
+        <div>
+          <h2 style="font-size:1.1rem;font-weight:700;color:var(--text)">Selecciona tus asientos</h2>
+          <p style="font-size:.83rem;color:var(--text-muted)" id="funcion-seleccionada-label"></p>
+        </div>
+        <button class="btn btn-ghost btn-sm" onclick="Taquilla.goBack(3)">← Volver</button>
+      </div>
+
+      <div class="seat-layout">
+        <!-- Mapa -->
+        <div class="seat-map-wrapper">
+          <div class="seat-map-inner">
+            <div class="screen-label">pantalla</div>
+            <div class="screen-bar"></div>
+            <div id="seat-map" class="seat-map">
+              <div class="alert alert-info"><span class="alert-icon"><span class="spinner"></span></span> Cargando mapa de asientos...</div>
+            </div>
+          </div>
+          <div class="seat-legend" style="margin-top:1.25rem">
+            <div class="legend-item"><div class="legend-dot libre"></div>Libre</div>
+            <div class="legend-item"><div class="legend-dot seleccionado"></div>Seleccionado</div>
+            <div class="legend-item"><div class="legend-dot ocupado"></div>Ocupado</div>
+            <div class="legend-item"><div class="legend-dot vip" style="background:#FEF9C3;border:1.5px solid #FDE047"></div>VIP</div>
+            <div class="legend-item"><div class="legend-dot no-disponible"></div>No compatible con tu tarifa</div>
+          </div>
+        </div>
+
+        <!-- Resumen lateral -->
+        <div class="seat-summary">
+          <h3>Resumen de compra</h3>
+          <div class="summary-pelicula" id="sum-pelicula">—</div>
+          <div class="summary-meta" id="sum-meta">—</div>
+          <div class="summary-meta" id="sum-tarifa">—</div>
+          <div id="selected-seats-list" class="selected-seats-list">
+            <p style="font-size:.82rem;color:var(--text-muted);text-align:center;padding:.5rem 0">
+              Haz clic en un asiento libre para seleccionarlo
+            </p>
+          </div>
+          <div class="summary-total">
+            <span>Total estimado</span>
+            <span id="sum-total">Bs. 0.00</span>
+          </div>
+          <div id="feedback-4" style="margin-top:.5rem"></div>
+          <button id="btn-continuar-4" class="btn btn-primary" style="width:100%;margin-top:1rem" disabled onclick="Taquilla.step4Continue()">
+            Continuar →
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PASO 5: Datos ── -->
+    <div class="wizard-panel" id="panel-5">
+      <div class="card">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem">
+          <div class="card-title" style="margin-bottom:0">Tus datos</div>
+          <button class="btn btn-ghost btn-sm" onclick="Taquilla.goBack(4)">← Volver</button>
+        </div>
+
+        <form id="form-datos" onsubmit="Taquilla.comprar(event)">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="inp-nombres">Nombres *</label>
+              <input type="text" id="inp-nombres" placeholder="Ej: Juan Carlos" required />
+            </div>
+            <div class="form-group">
+              <label for="inp-apellidos">Apellidos *</label>
+              <input type="text" id="inp-apellidos" placeholder="Ej: Saavedra Ríos" required />
+            </div>
+            <div class="form-group">
+              <label for="inp-email">Correo electrónico *</label>
+              <input type="email" id="inp-email" placeholder="juan@ejemplo.com" required />
+            </div>
+            <div class="form-group">
+              <label for="inp-telefono">Teléfono</label>
+              <input type="tel" id="inp-telefono" placeholder="Ej: 77777777" />
+            </div>
+          </div>
+
+          <div id="email-notice" style="margin-top:.75rem"></div>
+
+          <!-- Resumen pre-compra -->
+          <div id="resumen-precompra" style="margin-top:1.25rem"></div>
+
+          <div id="feedback-5" style="margin-top:1rem"></div>
+
+          <div style="display:flex;gap:.75rem;margin-top:1.25rem">
+            <button type="button" class="btn btn-ghost" onclick="Taquilla.goBack(4)">← Volver</button>
+            <button type="submit" id="btn-comprar" class="btn btn-primary" style="flex:1">
+              🎟️ Confirmar compra
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- ── PASO 6: Comprobante ── -->
+    <div class="wizard-panel" id="panel-6">
+      <div id="area-comprobante">
+        <div class="alert alert-info"><span class="alert-icon"><span class="spinner"></span></span> Procesando tu compra...</div>
+      </div>
+      <div style="text-align:center;margin-top:1.5rem">
+        <button class="btn btn-secondary" onclick="Taquilla.reiniciar()">🎟️ Comprar otra entrada</button>
+        <a href="portal.html" class="btn btn-ghost" style="margin-left:.75rem">Ver mi portal →</a>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/taquilla.js"></script>
+</body>
+</html>

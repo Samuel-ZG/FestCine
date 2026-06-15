@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reportes — FestCine</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-brand">🎬 Fest<span>Cine</span></div>
+    <div class="nav-links">
+      <a class="nav-link" href="index.html">Inicio</a>
+      <a class="nav-link" href="taquilla.html">Comprar entrada</a>
+      <a class="nav-link" href="portal.html">Mi portal</a>
+      <a class="nav-link" href="agenda.html">Agenda</a>
+      <a class="nav-link active" href="reportes.html">Reportes</a>
+    </div>
+  </nav>
+
+  <main class="page">
+    <h1 class="page-title">📊 Reportes de la Edición 2026</h1>
+    <p class="page-subtitle">Estadísticas en tiempo real · FestCine 2026</p>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="tab-ranking">🏅 Ranking</button>
+      <button class="tab-btn" data-tab="tab-acta">🏆 Acta de premiación</button>
+      <button class="tab-btn" data-tab="tab-financiero">💰 Informe financiero</button>
+    </div>
+
+    <div id="tab-ranking" class="tab-panel active">
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem">
+          <div class="card-title" style="margin-bottom:0">Películas más vistas — % de ocupación</div>
+          <button id="btn-ranking" class="btn btn-secondary btn-sm">🔄 Actualizar</button>
+        </div>
+        <div id="tabla-ranking">
+          <div class="alert alert-info"><span class="alert-icon"><span class="spinner"></span></span> Cargando datos...</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-acta" class="tab-panel">
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem">
+          <div class="card-title" style="margin-bottom:0">Ganadores por categoría</div>
+          <button id="btn-acta" class="btn btn-secondary btn-sm">🔄 Actualizar</button>
+        </div>
+        <div id="tabla-acta">
+          <div class="alert alert-info"><span class="alert-icon">ℹ️</span>Presiona "Actualizar" para cargar los datos.</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-financiero" class="tab-panel">
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem">
+          <div class="card-title" style="margin-bottom:0">Recaudación por tipo de venta</div>
+          <button id="btn-financiero" class="btn btn-secondary btn-sm">🔄 Actualizar</button>
+        </div>
+        <div id="tabla-financiero-tipoventa">
+          <div class="alert alert-info"><span class="alert-icon">ℹ️</span>Presiona "Actualizar" para cargar los datos.</div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:1.5rem">
+        <div class="card-title">Recaudación por tipo de tarifa</div>
+        <div id="tabla-financiero-tarifa">
+          <div class="alert alert-info"><span class="alert-icon">ℹ️</span>Presiona "Actualizar" para cargar los datos.</div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/reportes.js"></script>
+</body>
+</html>

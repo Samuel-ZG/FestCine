@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agenda — FestCine</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-brand">🎬 Fest<span>Cine</span></div>
+    <div class="nav-links">
+      <a class="nav-link" href="index.html">Inicio</a>
+      <a class="nav-link" href="taquilla.html">Comprar entrada</a>
+      <a class="nav-link" href="portal.html">Mi portal</a>
+      <a class="nav-link active" href="agenda.html">Agenda</a>
+      <a class="nav-link" href="reportes.html">Reportes</a>
+    </div>
+  </nav>
+
+  <main class="page">
+    <h1 class="page-title">📅 Panel de Control de Agenda</h1>
+    <p class="page-subtitle">Administración de proyecciones · FestCine 2026</p>
+
+    <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:1.5rem;align-items:start">
+
+      <div class="card">
+        <div class="card-title">Nueva proyección</div>
+
+        <form id="form-agenda">
+          <div class="form-grid">
+
+            <div class="form-group full">
+              <label for="sel-pelicula">Película</label>
+              <select id="sel-pelicula"><option value="">Cargando...</option></select>
+            </div>
+
+            <div class="form-group full">
+              <label for="sel-sala">Sala</label>
+              <select id="sel-sala"><option value="">-- Sala --</option></select>
+            </div>
+
+            <div class="form-group">
+              <label for="inp-inicio">Fecha y hora de inicio</label>
+              <input type="datetime-local" id="inp-inicio" />
+            </div>
+
+            <div class="form-group">
+              <label for="inp-fin">Hora de fin (fin real de la película, calculada)</label>
+              <input type="datetime-local" id="inp-fin" readonly />
+            </div>
+
+            <div class="form-group full">
+              <label for="inp-sesion-qa">Sesión Q&A (opcional)</label>
+              <input type="text" id="inp-sesion-qa" placeholder="ej. Sí, con el director Rodrigo Bellot" />
+            </div>
+
+            <div class="form-group full" style="margin-top:.5rem">
+              <button type="submit" id="btn-programar" class="btn btn-primary" style="width:100%">
+                📅 Programar proyección
+              </button>
+            </div>
+
+          </div>
+        </form>
+
+        <div id="area-feedback" style="margin-top:1.25rem"></div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:1.5rem">
+
+        <div class="card">
+          <div class="card-title">Programadas en esta sesión</div>
+          <div id="lista-reciente"></div>
+        </div>
+
+
+      </div>
+    </div>
+
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/agenda.js"></script>
+</body>
+</html>

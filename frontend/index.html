@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FestCine 2026 — Sistema de Gestión</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-brand">🎬 Fest<span>Cine</span></div>
+    <div class="nav-links">
+      <a class="nav-link active" href="index.html">Inicio</a>
+      <a class="nav-link" href="taquilla.html">Comprar entrada</a>
+      <a class="nav-link" href="portal.html">Mi portal</a>
+      <a class="nav-link" href="agenda.html">Agenda</a>
+      <a class="nav-link" href="reportes.html">Reportes</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-title">🎬 Fest<span>Cine</span></div>
+    <p class="hero-sub">Sistema de Gestión del Festival Internacional de Cine Independiente — Edición 2026</p>
+  </div>
+
+  <div class="modules-grid">
+
+    <div class="module-card" onclick="location.href='taquilla.html'">
+      <div class="module-icon">🎟️</div>
+      <h2>Comprar Entrada</h2>
+      <p>Selecciona película, función y asiento. Aforo controlado en tiempo real por el servidor.</p>
+      <a href="taquilla.html" class="btn btn-primary">Ir a taquilla</a>
+    </div>
+
+    <div class="module-card" onclick="location.href='portal.html'">
+      <div class="module-icon">👤</div>
+      <h2>Mi Portal</h2>
+      <p>Consulta tus entradas, abonos y acreditación. Compra abonos con transacción atómica.</p>
+      <a href="portal.html" class="btn btn-primary">Abrir portal</a>
+    </div>
+
+    <div class="module-card" onclick="location.href='agenda.html'">
+      <div class="module-icon">📅</div>
+      <h2>Agenda Admin</h2>
+      <p>Programa proyecciones. El trigger TR1 previene cruces de horario automáticamente.</p>
+      <a href="agenda.html" class="btn btn-secondary">Abrir agenda</a>
+    </div>
+
+    <div class="module-card" onclick="location.href='reportes.html'">
+      <div class="module-icon">📊</div>
+      <h2>Reportes</h2>
+      <p>Ranking de asistencia, acta de premiación e informe financiero desde vistas SQL.</p>
+      <a href="reportes.html" class="btn btn-secondary">Ver reportes</a>
+    </div>
+
+  </div>
+
+  <div style="text-align:center;padding:0 2rem 4rem;color:var(--text-muted);font-size:.83rem">
+    <div style="margin-bottom:.4rem;font-weight:700;color:var(--accent)">Stack Técnico</div>
+    SQL Server T-SQL &nbsp;·&nbsp; ASP.NET Core 9 Web API &nbsp;·&nbsp; Dapper &nbsp;·&nbsp; JavaScript / HTML / CSS
+  </div>
+
+</body>
+</html>
